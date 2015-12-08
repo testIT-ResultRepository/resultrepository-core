@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.OneTests" time="0.000" tests="2"
+           errors="0" skipped="2" failures="0">
+    <testcase name="testMethodTwo" classname="tests.OneTests"
+              time="0">
+        <skipped/>
+    </testcase>
+    <testcase name="testMethodThree" classname="tests.OneTests"
+              time="0">
+        <skipped/>
+    </testcase>
+</testsuite>

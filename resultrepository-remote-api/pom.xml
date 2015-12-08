@@ -1,0 +1,65 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>info.novatec.testit</groupId>
+        <artifactId>resultrepository</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>resultrepository-remote-api</artifactId>
+    <name>testIT | ResultRepository - Remote API</name>
+
+    <properties>
+        <project.root>..</project.root>
+        <java.version>1.7</java.version>
+        <version.assertj.core>2.1.0</version.assertj.core>
+    </properties>
+
+    <dependencies>
+
+        <!-- compile dependencies -->
+
+        <dependency>
+            <!-- WHY: Access to model classes for most API services. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Access to metric report classes for certain API services. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-metrics</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>resultrepository-logging</artifactId>
+                    <groupId>info.novatec.testit</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-boot-starter</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- test dependencies -->
+
+        <dependency>
+            <!-- WHY: Access to the ObjectMapper class in order to test JSON serialization
+                of DTO classes. -->
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

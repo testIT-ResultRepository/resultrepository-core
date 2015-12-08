@@ -1,0 +1,56 @@
+
+### spring properties ###
+
+info:
+  name: "testIT ResultRepository"
+  version: "${project.version}"
+
+server:
+  port: 8080
+
+management:
+  port: 9090
+ 
+endpoints:
+  enabled: false
+  autoconfig:
+    enabled: true
+    sensitive: false
+  beans:
+    enabled: true
+    sensitive: false
+  configprops:
+    enabled: true
+    sensitive: false
+  env:
+    enabled: true
+    sensitive: false
+  health:
+    enabled: true
+    sensitive: false
+  info:
+    enabled: true
+    sensitive: false
+  metrics:
+    enabled: true
+    sensitive: false
+  mappings:
+    enabled: true
+    sensitive: false
+    
+spring:
+  aop:
+    #auto: ?
+    proxy-target-class: true
+  hornetq:
+    mode: "embedded"
+    #host: "localhost"
+    #port: 5445 
+    embedded:
+      enabled: true
+      #server-id: ? 
+      persistent: false 
+      #data-directory: ?
+      queues: "importTestGroupResult"
+      #topics: ?
+      #cluster-password: ?

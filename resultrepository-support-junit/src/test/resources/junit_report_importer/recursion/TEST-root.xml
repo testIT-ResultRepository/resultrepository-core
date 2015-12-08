@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.JUnitReportImporterTest" time="1.750"
+           tests="4" errors="1" skipped="1" failures="1">
+
+    <testcase name="testSuccessfullTestcase" classname="tests.JUnitReportImporterTest"
+              time="0.500"/>
+
+    <testcase name="testSkippedTestcase" classname="tests.JUnitReportImporterTest"
+              time="0">
+        <skipped/>
+    </testcase>
+
+    <testcase name="testFailedTestcase" classname="tests.JUnitReportImporterTest"
+              time="1.000">
+        <failure message="failureMessage" type="java.lang.AssertionError"><![CDATA[stacktracedata]]></failure>
+    </testcase>
+
+    <testcase name="testErrorTestcase" classname="tests.JUnitReportImporterTest"
+              time="0.250">
+        <error message="errorMessage" type="java.lang.AssertionError"><![CDATA[stacktracedata]]></error>
+    </testcase>
+
+</testsuite>

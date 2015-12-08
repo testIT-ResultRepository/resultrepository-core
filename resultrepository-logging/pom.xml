@@ -1,0 +1,59 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>info.novatec.testit</groupId>
+        <artifactId>resultrepository</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>resultrepository-logging</artifactId>
+    <name>testIT | ResultRepository - Logging</name>
+
+    <properties>
+        <project.root>..</project.root>
+    </properties>
+
+    <dependencies>
+
+        <!-- compile dependencies -->
+
+        <dependency>
+            <!-- WHY: String and other common language operations. -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Allow for basic Spring Boot support. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Optional logging aspects if AOP is available. Aspect beans have
+                to be conditional! -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <!-- WHY: Optional Spring Boot configuration class processor. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- test dependencies -->
+
+        <dependency>
+            <!-- WHY: Integration tests of AOP aspects. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

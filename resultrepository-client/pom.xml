@@ -1,0 +1,68 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>info.novatec.testit</groupId>
+        <artifactId>resultrepository</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>resultrepository-client</artifactId>
+    <name>testIT | ResultRepository - Client</name>
+
+    <properties>
+        <project.root>..</project.root>
+        <java.version>1.7</java.version>
+        <version.assertj.core>2.1.0</version.assertj.core>
+    </properties>
+
+    <dependencies>
+
+        <!-- compile dependencies -->
+
+        <dependency>
+            <!-- WHY: Defines parameters and interfaces of ResultRepository's API. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-remote-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <!-- WHY: Communication with ResultRepository's REST API. -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: JSON support of Spring's REST template. -->
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- WHY: Optional Spring Boot auto configruation for client services. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <!-- WHY: Optional Spring Boot configuration class processor. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- test dependencies -->
+
+        <dependency>
+            <!-- WHY: Integration tests of client calls to the REST API. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

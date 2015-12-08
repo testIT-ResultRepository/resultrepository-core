@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+        scan="true"
+        scanPeriod="30 seconds">
+
+    <property
+            name="LOG_PATH"
+            value="logs"/>
+    <property
+            name="LOG_FILE"
+            value="${LOG_PATH}/resultrepository-server.log"/>
+    <property
+            name="LOG_PATTERN"
+            value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5le ${PID:- } [%t] --- %lo : %m%n%ex"/>
+
+    <appender
+            name="FILE"
+            class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%i</fileNamePattern>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender
+            name="CONSOLE"
+            class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <logger
+            name="info.novatec"
+            level="DEBUG"/>
+
+</configuration>

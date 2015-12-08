@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite
+        name="tests.OneTests"
+        time="0.000"
+        tests="0"
+        errors="0"
+        skipped="0"
+        failures="0">
+    <properties>
+        <property
+                name="property_1"
+                value="value_1"/>
+        <property
+                name="property_2"
+                value="value_2"/>
+    </properties>
+</testsuite>

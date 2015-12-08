@@ -1,0 +1,158 @@
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>info.novatec.testit</groupId>
+        <artifactId>resultrepository</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>resultrepository-server</artifactId>
+    <name>testIT | ResultRepository - Server</name>
+
+    <properties>
+        <project.root>..</project.root>
+        <start-class>info.novatec.testit.resultrepository.server.Application</start-class>
+    </properties>
+
+    <dependencies>
+
+        <!-- compile dependencies -->
+
+        <dependency>
+            <!-- WHY: Access to model classes. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Logging of service calls. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-logging</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Recording of metrics. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-metrics</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Access to server services. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-server-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Access to persistence implementation of server services. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-persistence</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Access to server remote API declaration in order to implement
+                services. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-remote-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- WHY: Access to REST remote API implementation. -->
+            <groupId>info.novatec.testit</groupId>
+            <artifactId>resultrepository-rest</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <!-- WHY: Enable Spring Boot functionality. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Enable AOP functionality. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Enable Actuator functionality. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Enable HornetQ integration functionality. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hornetq</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Embedded HornetQ server. -->
+            <groupId>org.hornetq</groupId>
+            <artifactId>hornetq-jms-server</artifactId>
+        </dependency>
+        <dependency>
+            <!-- WHY: Optional Spring Boot configuration class processor. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <!-- WHY: Retry mechanisms inside the server. -->
+            <!-- Note: Needs to be declared after all other Spring dependencies in
+                order to ensure correct Spring version! -->
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+        </dependency>
+
+        <!-- test dependencies -->
+
+        <dependency>
+            <!-- WHY: Integration tests of server operations. -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- #START: package the application as a spring boot application -->
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${version.spring.boot}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <classifier>runnable</classifier>
+                    <mainClass>${start-class}</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${start-class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- #END: package the application as a spring boot application -->
+
+        </plugins>
+    </build>
+
+</project>
