@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/License-GNU%20General%20Public%20License%203.0-brightgreen.svg)](http://www.gnu.org/licenses/gpl-3.0.txt)
 [![Build Status](https://travis-ci.org/testIT-ResultRepository/resultrepository-core.svg?branch=master)](https://travis-ci.org/testIT-ResultRepository/resultrepository-core)
+[![Issue Count](https://codeclimate.com/github/testIT-ResultRepository/resultrepository-core/badges/issue_count.svg)](https://codeclimate.com/github/testIT-ResultRepository/resultrepository-core)
 
 # testIT ResultRepository
 testIT ResultRepository is designed to homogenize test results from different sources and formats into a single source of truth for your project's state
