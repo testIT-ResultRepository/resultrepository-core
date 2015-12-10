@@ -2,7 +2,7 @@ language: java
 jdk:
   - oraclejdk8
 script:
-  - mvn verify -P code-quality,documentation
+  - mvn verify -P code-quality,documentation,!release
 addons:
   apt:
     packages:
