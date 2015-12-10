@@ -8,6 +8,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import info.novatec.testit.resultrepository.api.interfaces.Build;
 import info.novatec.testit.resultrepository.api.interfaces.MetadataValue;
 import info.novatec.testit.resultrepository.api.interfaces.Tag;
@@ -23,7 +27,7 @@ import info.novatec.testit.resultrepository.api.interfaces.TestResult;
  *
  * @since 2.0.0
  */
-@SuppressWarnings({ "CPD-START", "serial" })
+@SuppressWarnings({ "serial" })
 public class TestGroupResultData implements TestGroupResult, Serializable {
 
     private Long id;
@@ -213,96 +217,55 @@ public class TestGroupResultData implements TestGroupResult, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((build == null) ? 0 : build.hashCode());
-        result = prime * result + ((creationTimestamp == null) ? 0 : creationTimestamp.hashCode());
-        result = prime * result + ((customProperties == null) ? 0 : customProperties.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((metadataValues == null) ? 0 : metadataValues.hashCode());
-        result = prime * result + ((tags == null) ? 0 : tags.hashCode());
-        result = prime * result + ((testGroup == null) ? 0 : testGroup.hashCode());
-        result = prime * result + ((testResults == null) ? 0 : testResults.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TestGroupResultData that = ( TestGroupResultData ) o;
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .append(build, that.build)
+            .append(testGroup, that.testGroup)
+            .append(creationTimestamp, that.creationTimestamp)
+            .append(tags, that.tags)
+            .append(metadataValues, that.metadataValues)
+            .append(testResults, that.testResults)
+            .append(customProperties, that.customProperties)
+            .isEquals();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        TestGroupResultData other = ( TestGroupResultData ) obj;
-        if (build == null) {
-            if (other.build != null) {
-                return false;
-            }
-        } else if (!build.equals(other.build)) {
-            return false;
-        }
-        if (creationTimestamp == null) {
-            if (other.creationTimestamp != null) {
-                return false;
-            }
-        } else if (!creationTimestamp.equals(other.creationTimestamp)) {
-            return false;
-        }
-        if (customProperties == null) {
-            if (other.customProperties != null) {
-                return false;
-            }
-        } else if (!customProperties.equals(other.customProperties)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (metadataValues == null) {
-            if (other.metadataValues != null) {
-                return false;
-            }
-        } else if (!metadataValues.equals(other.metadataValues)) {
-            return false;
-        }
-        if (tags == null) {
-            if (other.tags != null) {
-                return false;
-            }
-        } else if (!tags.equals(other.tags)) {
-            return false;
-        }
-        if (testGroup == null) {
-            if (other.testGroup != null) {
-                return false;
-            }
-        } else if (!testGroup.equals(other.testGroup)) {
-            return false;
-        }
-        if (testResults == null) {
-            if (other.testResults != null) {
-                return false;
-            }
-        } else if (!testResults.equals(other.testResults)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(build)
+            .append(testGroup)
+            .append(creationTimestamp)
+            .append(tags)
+            .append(metadataValues)
+            .append(testResults)
+            .append(customProperties)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "TestGroupResultData [id=" + id + ", build=" + build + ", testGroup=" + testGroup + ", creationTimestamp="
-            + creationTimestamp + ", tags=" + tags + ", metadataValues=" + metadataValues + ", testResults=" + testResults
-            + ", customProperties=" + customProperties + "]";
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("build", build)
+            .append("testGroup", testGroup)
+            .append("creationTimestamp", creationTimestamp)
+            .append("tags", tags)
+            .append("metadataValues", metadataValues)
+            .append("testResults", testResults)
+            .append("customProperties", customProperties)
+            .toString();
     }
 
 }

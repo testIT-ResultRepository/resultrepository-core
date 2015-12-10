@@ -2,6 +2,10 @@ package info.novatec.testit.resultrepository.api.dto;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import info.novatec.testit.resultrepository.api.interfaces.Tag;
 
 
@@ -12,7 +16,7 @@ import info.novatec.testit.resultrepository.api.interfaces.Tag;
  *
  * @since 2.0.0
  */
-@SuppressWarnings({ "CPD-START", "serial" })
+@SuppressWarnings({ "serial" })
 public class TagData implements Tag, Serializable {
 
     private Long id;
@@ -71,54 +75,40 @@ public class TagData implements Tag, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((creationTimestamp == null) ? 0 : creationTimestamp.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((value == null) ? 0 : value.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TagData tagData = ( TagData ) o;
+
+        return new EqualsBuilder()
+            .append(id, tagData.id)
+            .append(value, tagData.value)
+            .append(creationTimestamp, tagData.creationTimestamp)
+            .isEquals();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        TagData other = ( TagData ) obj;
-        if (creationTimestamp == null) {
-            if (other.creationTimestamp != null) {
-                return false;
-            }
-        } else if (!creationTimestamp.equals(other.creationTimestamp)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (value == null) {
-            if (other.value != null) {
-                return false;
-            }
-        } else if (!value.equals(other.value)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(value)
+            .append(creationTimestamp)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "TagData [id=" + id + ", value=" + value + ", creationTimestamp=" + creationTimestamp + "]";
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("value", value)
+            .append("creationTimestamp", creationTimestamp)
+            .toString();
     }
 
 }

@@ -13,12 +13,11 @@ import info.novatec.testit.resultrepository.persistence.settings.PersistenceSett
 @Component
 public class PersistenceHealthIndicator implements HealthIndicator {
 
-    static final String REASON = "reason";
-    static final String DATABASE_NOT_AVAILABLE = "database not available";
+    private static final String REASON = "reason";
+    private static final String DATABASE_NOT_AVAILABLE = "database not available";
 
-    static final String CLASS = "class";
-    static final String DATA_FOLDER = "data-folder";
-    static final String SETTINGS = "settings";
+    private static final String CLASS = "class";
+    private static final String SETTINGS = "settings";
 
     @Autowired
     private HealthCheckSettings healthCheckSettings;

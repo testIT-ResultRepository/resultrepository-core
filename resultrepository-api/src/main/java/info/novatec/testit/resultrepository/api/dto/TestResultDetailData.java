@@ -2,6 +2,10 @@ package info.novatec.testit.resultrepository.api.dto;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import info.novatec.testit.resultrepository.api.enumerations.DetailType;
 import info.novatec.testit.resultrepository.api.interfaces.TestResultDetail;
 
@@ -13,7 +17,7 @@ import info.novatec.testit.resultrepository.api.interfaces.TestResultDetail;
  *
  * @since 2.0.0
  */
-@SuppressWarnings({ "CPD-START", "serial" })
+@SuppressWarnings({ "serial" })
 public class TestResultDetailData implements TestResultDetail, Serializable {
 
     private Long id;
@@ -82,59 +86,43 @@ public class TestResultDetailData implements TestResultDetail, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((creationTimestamp == null) ? 0 : creationTimestamp.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((message == null) ? 0 : message.hashCode());
-        result = prime * result + ((type == null) ? 0 : type.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TestResultDetailData that = ( TestResultDetailData ) o;
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .append(type, that.type)
+            .append(message, that.message)
+            .append(creationTimestamp, that.creationTimestamp)
+            .isEquals();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        TestResultDetailData other = ( TestResultDetailData ) obj;
-        if (creationTimestamp == null) {
-            if (other.creationTimestamp != null) {
-                return false;
-            }
-        } else if (!creationTimestamp.equals(other.creationTimestamp)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (message == null) {
-            if (other.message != null) {
-                return false;
-            }
-        } else if (!message.equals(other.message)) {
-            return false;
-        }
-        if (type != other.type) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(type)
+            .append(message)
+            .append(creationTimestamp)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "TestResultDetailData [id=" + id + ", type=" + type + ", message=" + message + ", creationTimestamp="
-            + creationTimestamp + "]";
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("type", type)
+            .append("message", message)
+            .append("creationTimestamp", creationTimestamp)
+            .toString();
     }
 
 }

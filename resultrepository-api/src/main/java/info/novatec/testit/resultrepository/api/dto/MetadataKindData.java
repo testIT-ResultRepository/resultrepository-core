@@ -2,6 +2,10 @@ package info.novatec.testit.resultrepository.api.dto;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import info.novatec.testit.resultrepository.api.interfaces.MetadataKind;
 
 
@@ -12,7 +16,7 @@ import info.novatec.testit.resultrepository.api.interfaces.MetadataKind;
  *
  * @since 2.0.0
  */
-@SuppressWarnings({ "CPD-START", "serial" })
+@SuppressWarnings({ "serial" })
 public class MetadataKindData implements MetadataKind, Serializable {
 
     private Long id;
@@ -81,63 +85,43 @@ public class MetadataKindData implements MetadataKind, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((creationTimestamp == null) ? 0 : creationTimestamp.hashCode());
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        MetadataKindData that = ( MetadataKindData ) o;
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .append(name, that.name)
+            .append(description, that.description)
+            .append(creationTimestamp, that.creationTimestamp)
+            .isEquals();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        MetadataKindData other = ( MetadataKindData ) obj;
-        if (creationTimestamp == null) {
-            if (other.creationTimestamp != null) {
-                return false;
-            }
-        } else if (!creationTimestamp.equals(other.creationTimestamp)) {
-            return false;
-        }
-        if (description == null) {
-            if (other.description != null) {
-                return false;
-            }
-        } else if (!description.equals(other.description)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(name)
+            .append(description)
+            .append(creationTimestamp)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "MetadataKindData [id=" + id + ", name=" + name + ", description=" + description + ", creationTimestamp="
-            + creationTimestamp + "]";
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("name", name)
+            .append("description", description)
+            .append("creationTimestamp", creationTimestamp)
+            .toString();
     }
 
 }

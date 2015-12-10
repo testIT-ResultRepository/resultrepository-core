@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import info.novatec.testit.resultrepository.api.enumerations.ResultStatus;
 import info.novatec.testit.resultrepository.api.interfaces.MetadataValue;
 import info.novatec.testit.resultrepository.api.interfaces.Tag;
@@ -25,7 +29,7 @@ import info.novatec.testit.resultrepository.api.interfaces.TestResultDetail;
  *
  * @since 2.0.0
  */
-@SuppressWarnings({ "CPD-START", "serial" })
+@SuppressWarnings({ "serial" })
 public class TestResultData implements TestResult, Serializable {
 
     private Long id;
@@ -222,100 +226,58 @@ public class TestResultData implements TestResult, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((creationTimestamp == null) ? 0 : creationTimestamp.hashCode());
-        result = prime * result + ((customProperties == null) ? 0 : customProperties.hashCode());
-        result = prime * result + ((duration == null) ? 0 : duration.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((metadataValues == null) ? 0 : metadataValues.hashCode());
-        result = prime * result + ((status == null) ? 0 : status.hashCode());
-        result = prime * result + ((tags == null) ? 0 : tags.hashCode());
-        result = prime * result + ((test == null) ? 0 : test.hashCode());
-        result = prime * result + ((testResultDetails == null) ? 0 : testResultDetails.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TestResultData that = ( TestResultData ) o;
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .append(duration, that.duration)
+            .append(test, that.test)
+            .append(creationTimestamp, that.creationTimestamp)
+            .append(status, that.status)
+            .append(tags, that.tags)
+            .append(metadataValues, that.metadataValues)
+            .append(testResultDetails, that.testResultDetails)
+            .append(customProperties, that.customProperties)
+            .isEquals();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        TestResultData other = ( TestResultData ) obj;
-        if (creationTimestamp == null) {
-            if (other.creationTimestamp != null) {
-                return false;
-            }
-        } else if (!creationTimestamp.equals(other.creationTimestamp)) {
-            return false;
-        }
-        if (customProperties == null) {
-            if (other.customProperties != null) {
-                return false;
-            }
-        } else if (!customProperties.equals(other.customProperties)) {
-            return false;
-        }
-        if (duration == null) {
-            if (other.duration != null) {
-                return false;
-            }
-        } else if (!duration.equals(other.duration)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (metadataValues == null) {
-            if (other.metadataValues != null) {
-                return false;
-            }
-        } else if (!metadataValues.equals(other.metadataValues)) {
-            return false;
-        }
-        if (status != other.status) {
-            return false;
-        }
-        if (tags == null) {
-            if (other.tags != null) {
-                return false;
-            }
-        } else if (!tags.equals(other.tags)) {
-            return false;
-        }
-        if (test == null) {
-            if (other.test != null) {
-                return false;
-            }
-        } else if (!test.equals(other.test)) {
-            return false;
-        }
-        if (testResultDetails == null) {
-            if (other.testResultDetails != null) {
-                return false;
-            }
-        } else if (!testResultDetails.equals(other.testResultDetails)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(duration)
+            .append(test)
+            .append(creationTimestamp)
+            .append(status)
+            .append(tags)
+            .append(metadataValues)
+            .append(testResultDetails)
+            .append(customProperties)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "TestResultData [id=" + id + ", duration=" + duration + ", test=" + test + ", creationTimestamp="
-            + creationTimestamp + ", status=" + status + ", tags=" + tags + ", metadataValues=" + metadataValues
-            + ", testResultDetails=" + testResultDetails + ", customProperties=" + customProperties + "]";
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("duration", duration)
+            .append("test", test)
+            .append("creationTimestamp", creationTimestamp)
+            .append("status", status)
+            .append("tags", tags)
+            .append("metadataValues", metadataValues)
+            .append("testResultDetails", testResultDetails)
+            .append("customProperties", customProperties)
+            .toString();
     }
 
 }
