@@ -11,7 +11,7 @@ package info.novatec.testit.resultrepository.metrics.api.metrics;
  */
 public class GenericMetric implements CounterMetric, HistogramMetric, MeterMetric, TimerMetric {
 
-    static final char SEPARATOR = '.';
+    private static final char SEPARATOR = '.';
 
     private String metricName;
 

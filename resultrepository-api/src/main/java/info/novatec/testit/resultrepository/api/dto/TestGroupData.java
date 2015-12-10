@@ -2,6 +2,10 @@ package info.novatec.testit.resultrepository.api.dto;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import info.novatec.testit.resultrepository.api.interfaces.TestGroup;
 
 
@@ -12,7 +16,7 @@ import info.novatec.testit.resultrepository.api.interfaces.TestGroup;
  *
  * @since 2.0.0
  */
-@SuppressWarnings({ "CPD-START", "serial" })
+@SuppressWarnings({ "serial" })
 public class TestGroupData implements TestGroup, Serializable {
 
     private Long id;
@@ -72,54 +76,41 @@ public class TestGroupData implements TestGroup, Serializable {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((creationTimestamp == null) ? 0 : creationTimestamp.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
+    @SuppressWarnings({ "CPD-START" })
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TestGroupData that = ( TestGroupData ) o;
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .append(name, that.name)
+            .append(creationTimestamp, that.creationTimestamp)
+            .isEquals();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        TestGroupData other = ( TestGroupData ) obj;
-        if (creationTimestamp == null) {
-            if (other.creationTimestamp != null) {
-                return false;
-            }
-        } else if (!creationTimestamp.equals(other.creationTimestamp)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(name)
+            .append(creationTimestamp)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
-        return "TestGroupData [id=" + id + ", name=" + name + ", creationTimestamp=" + creationTimestamp + "]";
+        return new ToStringBuilder(this)
+            .append("id", id)
+            .append("name", name)
+            .append("creationTimestamp", creationTimestamp)
+            .toString();
     }
 
 }
