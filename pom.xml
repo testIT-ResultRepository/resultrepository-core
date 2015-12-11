@@ -45,6 +45,7 @@
         <module>resultrepository-maven-plugin</module>
         <module>resultrepository-metrics</module>
         <module>resultrepository-persistence</module>
+        <module>resultrepository-plugin-junit</module>
         <module>resultrepository-remote-api</module>
         <module>resultrepository-rest</module>
         <module>resultrepository-server</module>

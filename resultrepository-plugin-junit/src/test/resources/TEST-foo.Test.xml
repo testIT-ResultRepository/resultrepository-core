@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="foo.Test" time="2.0" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="foo" value="1.0"/>
+    <property name="bar" value="Java 7"/>
+  </properties>
+  <testcase name="test1" classname="foo.Test" time="0.5"/>
+  <testcase name="test2" classname="foo.Test" time="0.5"/>
+  <testcase name="test3" classname="foo.Test" time="0.5"/>
+  <testcase name="test4" classname="foo.Test" time="0.5"/>
+</testsuite>
