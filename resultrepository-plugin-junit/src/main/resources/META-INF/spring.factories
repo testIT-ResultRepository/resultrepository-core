@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration = info.novatec.testit.resultrepository.plugin.junit.config.JUnitPluginAutoConfiguration

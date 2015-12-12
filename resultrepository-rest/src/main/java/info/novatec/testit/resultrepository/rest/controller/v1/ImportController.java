@@ -21,7 +21,7 @@ public class ImportController implements ImportRemoteService {
     private AsynchronousImportService importService;
 
     @Override
-    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.ACCEPTED)
     @RequestMapping(value = V1ContextPaths.IMPORT_TEST_GROUP_RESULT, method = RequestMethod.POST)
     public void importResult(@RequestBody TestGroupResultData result) {
         importService.importResult(result);

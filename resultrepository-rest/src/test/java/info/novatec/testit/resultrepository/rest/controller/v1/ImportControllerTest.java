@@ -4,12 +4,15 @@ import static info.novatec.testit.resultrepository.remote.v1.V1ContextPaths.IMPO
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.MediaType;
 
 import info.novatec.testit.resultrepository.api.dto.TestGroupResultData;
 import info.novatec.testit.resultrepository.server.api.AsynchronousImportService;
@@ -34,7 +37,10 @@ public class ImportControllerTest extends AbstractControllerTest {
 
         TestGroupResultData result = new TestGroupResultData().setId(ID);
 
-        performAndAssertPost(IMPORT_TEST_GROUP_RESULT, result);
+        mockMvc.perform(post(IMPORT_TEST_GROUP_RESULT)
+            .content(asJson(result))
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isAccepted());
 
         verify(importService).importResult(eq(result));
         verifyNoMoreInteractions(importService);

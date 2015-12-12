@@ -125,3 +125,16 @@ takes care of the REST overhead.
 | /v1/metrics/histograms | GET | - | List of HistogramReport | &#x2713; |
 | /v1/metrics/meters | GET | - | List of MeterReport | &#x2713; |
 | /v1/metrics/timers | GET | - | List of TimerReport | &#x2713; |
+
+# Plugin REST APIs
+
+## JUnit Plugin
+
+| Context Path | Method | Request | Response | Status |
+| ------------ | ------ | ------- | -------- | ------ |
+| /plugins/junit | POST | Testsuite (JUnit XML Report) | - | &#x2713; |
+
+The build a XML report should be linked to can be set by providing the following porperties:
+
+- buildJob: (String) name of the build job
+- buildNumber: (Integer) number of the build
