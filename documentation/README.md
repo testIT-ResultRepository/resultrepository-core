@@ -3,4 +3,5 @@
 
 *The documentation is currently under construction...*
 
+- [REST API](chapters/api-rest.md)
 
